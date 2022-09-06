@@ -1,0 +1,10 @@
+name: qmk
+channels:
+- defaults
+- conda-forge
+- microsoft
+dependencies:
+- python=3.10
+- pip
+- pip:
+  - qmk
