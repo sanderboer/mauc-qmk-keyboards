@@ -1,9 +1,9 @@
 # MCU name
-MCU = STM32F401
-BOARD = BLACKPILL_STM32_F401
+MCU = atmega32u4
+#BOARD = BLACKPILL_STM32_F401
 
 # Bootloader selection
-BOOTLOADER = stm32-dfu
+BOOTLOADER = caterina
 
 # Bootloader selection
 #   Teensy       halfkay

@@ -30,13 +30,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* key matrix size */
 //according to crkbd rows are doubled ?
-#define MATRIX_ROWS 7
+#define MATRIX_ROWS 4
 #define MATRIX_COLS 10
 
 /* key matrix pins */
 
-#define MATRIX_ROW_PINS { B3, B4, B5, B6, C15, C14, C13 } // pins A0, 15, 14, 16
-#define MATRIX_COL_PINS { A8, A9, A10, A11, A12, A4, A5, A6, A7, B0 }
+// #define MATRIX_ROW_PINS { B3, B4, B5, B6, C15, C14, C13 } // pins A0, 15, 14, 16
+// #define MATRIX_COL_PINS { A8, A9, A10, A11, A12, A4, A5, A6, A7, B0 }
+// A5 A6 A7 B6 A8 A9 A12
+// B1 B4 B5 B6 B7 B8 B9 B12
+#define MATRIX_ROW_PINS { D7, E6, B4, B5 }
+#define MATRIX_COL_PINS { B3, B2, D1, D0, D4, B1, F7, F6, F5, F4 }
 
 
 /* COL2ROW, ROW2COL*/
