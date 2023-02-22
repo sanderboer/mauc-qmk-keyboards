@@ -86,14 +86,14 @@ enum layer_names {
 // layer toggle.
 #define SPC_NUM LT(NUM, KC_SPC)
 #define SPC_MISC LT(MISC, KC_SPC)
-#define BSPC_NUM LT(NUM, KC_BSPACE)
-#define BSPC_MISC LT(MISC, KC_BSPACE)
+#define BSPC_NUM LT(NUM, KC_BSPC)
+#define BSPC_MISC LT(MISC, KC_BSPC)
 #define TAB_MISC LT(MISC, KC_TAB)
 #define ENT_SYM LT(SYM,KC_ENTER)
-#define BSPC_NAV LT(NAV, KC_BSPACE)
+#define BSPC_NAV LT(NAV, KC_BSPC)
 #define SPC_NAV LT(NAV, KC_SPACE)
 #define ESC_SYM LT(SYM, KC_ESCAPE)
-#define DEL_SYM LT(SYM, KC_DELT)
+#define DEL_SYM LT(SYM, KC_DEL)
 #define BSPC_SYM LT(SYM, KC_BSPC)
 
 enum custom_keycodes {
@@ -162,7 +162,7 @@ const uint16_t PROGMEM j_slash_combo[] = {KC_J, KC_SLASH, COMBO_END};
 #define DNTAB  LCTL(LSFT(KC_PGDN))
 #define NXTWIN LALT(KC_TAB)
 #define PRVWIN LALT(LSFT(KC_TAB))
-#define CALDL  LCTL(LALT(KC_DELT))
+#define CALDL  LCTL(LALT(KC_DEL))
 #define TSKMGR LCTL(LSFT(KC_ESC))
 #define EXPLR  LGUI(KC_E)
 #define LCKGUI LGUI(KC_L)
@@ -188,7 +188,7 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(d_v_combo, KC_RIGHT),
   */
   COMBO(y_en_combo, KC_ENTER),
-  COMBO(j_l_combo, KC_DELT)
+  COMBO(j_l_combo, KC_DEL)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  // TEMP mv KC_COMM to RESET, combos dont do macros nor RESET
  [_SYM] = LAYOUT_absolem(
-       KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLASH,  KC_TILD, KC_CIRC, KC_PMNS, KC_PLUS, KC_AT ,
+       KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLS,  KC_TILD, KC_CIRC, KC_PMNS, KC_PLUS, KC_AT ,
        KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_SLASH,   KC_PERC, KC_ASTR, KC_COLN, KC_SCLN, KC_DQT,
        KC_HASH, KC_DLR,  KC_QUES, KC_EXLM, KC_PIPE,    KC_EQL,  KC_AMPR, KC_DOT,  KC_COMM, KC_QUOT,
        KC_NO,   KC_NO,   KC_UNDS, KC_QUOT, KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
@@ -211,8 +211,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_absolem(
       KC_PGUP,   KC_NO,   KC_UP,   KC_NO,    LCTL(KC_GRAVE),   KC_PMNS, KC_P7, KC_P8,  KC_P9, KC_EQL,
-      KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   KC_PPLS,  KC_P4, KC_P5,  KC_P6, KC_PDOT,
-      KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    GU_P0,   AL_P1, SH_P2,  CT_P3, RESET,
+      KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   KC_PPLS,  KC_P4, KC_P5,  KC_P6, KC_PDOT,
+      KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    GU_P0,   AL_P1, SH_P2,  CT_P3, KC_PCMM,
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
 
@@ -226,14 +226,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NUM] = LAYOUT_absolem(
       KC_PMNS, KC_7,   KC_8, KC_9,  KC_EQL   , KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
       KC_PPLS, KC_4,   KC_5, KC_6,  KC_PDOT  , KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
-      KC_0,    KC_1,   KC_2, KC_3,  KC_COMMA , RESET,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
+      KC_0,    KC_1,   KC_2, KC_3,  KC_COMMA , KC_PCMM,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
       KC_NO,   KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
                           ),
 
   [_MISC] = LAYOUT_absolem(
       LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),   LGUI(KC_0), RGB_TOG, RGB_MOD,  RGB_VAI, RGB_M_B,
-      LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), KC_VOLU,      KC_NLCK,    KC_LALT, KC_LSFT,  KC_LCTL, KC_MUTE,
-      RESET,      KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,      RGB_HUI,    RGB_SAI, RGB_VAI,  KC_NO,   KC_NO,
+      LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), KC_VOLU,      KC_NUM,    KC_LALT, KC_LSFT,  KC_LCTL, KC_MUTE,
+      KC_PCMM,      KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,      RGB_HUI,    RGB_SAI, RGB_VAI,  KC_NO,   KC_NO,
       KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,        KC_NO,      KC_NO,   KC_NO,    KC_NO,   KC_NO
                            )
 
