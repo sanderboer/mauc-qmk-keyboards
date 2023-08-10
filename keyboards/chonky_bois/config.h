@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
+// #include "config_common.h"
 //#define USE_I2C
 #define USE_SERIAL
 #define SOFT_SERIAL_PIN D0 // pin 3
@@ -38,9 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID 0xFEED
 #define PRODUCT_ID 0x0000
 #define DEVICE_VER 0x0001
-#define MANUFACTURER Sander Boer
-#define PRODUCT Chonky_Bois
-#define DESCRIPTION A custom chonky keyboard
+#define MANUFACTURER "Sander Boer"
+#define PRODUCT "Chonky Bois"
+#define DESCRIPTION "A custom chonky keyboard"
 
 /* mouse settings */
 #define MK_KINETIC_SPEED
