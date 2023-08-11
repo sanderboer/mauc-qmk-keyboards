@@ -10,6 +10,29 @@
 #define ABSOLEM_LAYOUTS_H
 // Defines names for use in layer keycodes and the keymap
 
+enum custom_keycodes {
+    DRAG_SCROLL = SAFE_RANGE,
+};
+
+bool set_scrolling = false;
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (set_scrolling) {
+        mouse_report.h = mouse_report.x;
+        mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode == DRAG_SCROLL && record->event.pressed) {
+        set_scrolling = !set_scrolling;
+    }
+    return true;
+}
+
 enum layer_names {
   _COLEMAK, _SYM, _NAV, _NUM, _MISC
 };
@@ -96,40 +119,6 @@ enum layer_names {
 #define DEL_SYM LT(SYM, KC_DEL)
 #define BSPC_SYM LT(SYM, KC_BSPC)
 
-enum custom_keycodes {
-    QMKBEST = SAFE_RANGE,
-    QMKURL,
-    MY_RESET,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-    case QMKBEST:
-        if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("QMK is the best thing ever!");
-        } else {
-            // when keycode QMKBEST is released
-        }
-        break;
-
-    case QMKURL:
-        if (record->event.pressed) {
-            // when keycode QMKURL is pressed
-            SEND_STRING("https://qmk.fm/\n");
-        } else {
-            // when keycode QMKURL is released
-        }
-        break;
-
-    case MY_RESET:
-        if (record->event.pressed) {
-           reset_keyboard(); // selects all and copies
-        }
-        break;
-    }
-    return true;
-};
 
 // left hand combinations.
 const uint16_t PROGMEM q_w_combo[] = {KC_Q, KC_W, COMBO_END};
@@ -211,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_absolem(
       KC_PGUP,   KC_NO,   KC_UP,   KC_NO,    LCTL(KC_GRAVE),   KC_PMNS, KC_P7, KC_P8,  KC_P9, KC_EQL,
-      KC_PGDN, KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   KC_PPLS,  KC_P4, KC_P5,  KC_P6, KC_PDOT,
+      KC_PGDN,   KC_LEFT, KC_DOWN, KC_RIGHT, LGUI(KC_GRAVE),   KC_PPLS,  KC_P4, KC_P5,  KC_P6, KC_PDOT,
       KC_APP,    KC_HOME, KC_SPC,  KC_END,   LCA(KC_GRAVE),    GU_P0,   AL_P1, SH_P2,  CT_P3, KC_PCMM,
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
@@ -224,10 +213,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                         ),
 
   [_NUM] = LAYOUT_absolem(
-      KC_PMNS, KC_7,   KC_8, KC_9,  KC_MS_BTN3   , KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
-      KC_PPLS, KC_4,   KC_5, KC_6,  KC_MS_BTN2   , KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
-      KC_0,    KC_1,   KC_2, KC_3,  KC_MS_BTN1   , KC_PCMM,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
-      KC_NO,   KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
+      DRAG_SCROLL, KC_7,   KC_8, KC_9,  KC_MS_BTN3   ,   KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
+      KC_PPLS,     KC_4,   KC_5, KC_6,  KC_MS_BTN2   ,   KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
+      KC_0,        KC_1,   KC_2, KC_3,  KC_MS_BTN1   ,   KC_PCMM,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
+      KC_NO,       KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
                           ),
 
   [_MISC] = LAYOUT_absolem(
