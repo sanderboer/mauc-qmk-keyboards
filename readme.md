@@ -44,3 +44,21 @@ without recompiling. Each keyboard has a unique PID (0x0000-0x0005).
 4. Remap away. Do NOT remap the L and U positions on the base layer,
    that breaks the L+U -> Scroll Lock combo (combos stay firmware-only,
    VIA cannot edit them).
+
+EEPROM vs firmware (read this when a reflash "does nothing")
+------------------------------------------------------------
+On first boot VIA copies the firmware keymap into EEPROM and from then
+on the EEPROM copy wins. So after `qmk flash`, if the old key is still
+there (e.g. `/` instead of ScrollLock), the firmware is fine — the
+stale EEPROM shadow is the problem. Fix:
+
+1. Press the EEPROM-clear key in the `_MISC` layer (`QK_CLEAR_EEPROM`,
+   next to `QK_BOOT`), or VIA Settings -> Reset EEPROM.
+2. Unplug/replug.
+3. On splits (yask_bois, chonky_bois): reflash BOTH halves afterwards,
+   because clearing wipes the `EE_HANDS` handedness with it
+   (`uf2-split-left` + `uf2-split-right`, or both `avrdude-split-*`).
+
+   Same procedure after changing `layer_count`: it reshapes the EEPROM
+   layout, so a clear + both-halves reflash is required for it to take
+   effect.

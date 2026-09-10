@@ -1,1 +1,1 @@
-# The default keymap for signum_absolem
+# The default keymap for chonky_bois

@@ -1,4 +1,4 @@
-// -*- compile-command: (concat "pushd " sndr-project-root " && lxqt-sudo make chonky_bois:default:avrdude-split-right"); -*-
+// -*- compile-command: (concat "pushd " sndr-project-root " && lxqt-sudo make yask_bois:default:uf2-split-right"); -*-
 /* Copyright 2020 Sander Boer
  *
  * This program is free software: you can redistribute it and/or modify

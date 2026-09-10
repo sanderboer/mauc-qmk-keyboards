@@ -1,4 +1,4 @@
-// -*- compile-command: (concat "pushd " sndr-project-root " && lxqt-sudo make box_o_alps:default:avrdude-split-right"); -*-
+// -*- compile-command: (concat "pushd " sndr-project-root " && lxqt-sudo make box_o_alps_stm32f4x1:default:dfu-util"); -*-
 /* Copyright 2020 Sander Boer
  *
  * This program is free software: you can redistribute it and/or modify

@@ -17,68 +17,6 @@
 #if !defined(ABSOLEM_LAYOUTS_H)
 #define ABSOLEM_LAYOUTS_H
 
-////////////////////////// drag_scroll
-// enum custom_keycodes {
-//     DRAG_SCROLL = SAFE_RANGE,
-// };
-//
-// bool set_scrolling = false;
-//
-// // Modify these values to adjust the scrolling speed
-// #define SCROLL_DIVISOR_H 8.0
-// #define SCROLL_DIVISOR_V 8.0
-//
-// // Variables to store accumulated scroll values
-// float scroll_accumulated_h = 0;
-// float scroll_accumulated_v = 0;
-//
-// // Function to handle mouse reports and perform drag scrolling
-// report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-//     // Check if drag scrolling is active
-//     if (set_scrolling) {
-//         // Calculate and accumulate scroll values based on mouse movement and divisors
-//         scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
-//         scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
-//
-//         // Assign integer parts of accumulated scroll values to the mouse report
-//         mouse_report.h = (int8_t)scroll_accumulated_h;
-//         mouse_report.v = (int8_t)scroll_accumulated_v;
-//
-//         // Update accumulated scroll values by subtracting the integer parts
-//         scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-//         scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-//
-//         // Clear the X and Y values of the mouse report
-//         mouse_report.x = 0;
-//         mouse_report.y = 0;
-//     }
-//     return mouse_report;
-// }
-//
-// // Function to handle key events and enable/disable drag scrolling
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) {
-//         case DRAG_SCROLL:
-//             // Toggle set_scrolling when DRAG_SCROLL key is pressed or released
-//             set_scrolling = record->event.pressed;
-//             break;
-//         default:
-//             break;
-//     }
-//     return true;
-// }
-//
-// // Function to handle layer changes and disable drag scrolling when not in AUTO_MOUSE_DEFAULT_LAYER
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//     // Disable set_scrolling if the current layer is not the AUTO_MOUSE_DEFAULT_LAYER
-//     // if (get_highest_layer(state) != AUTO_MOUSE_DEFAULT_LAYER) {
-//     //     set_scrolling = false;
-//     // }
-//     return state;
-// }
-////////////////////////// end drag_scroll
-
-
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
   _COLEMAK, _SYM, _NAV, _NUM, _MISC
@@ -135,7 +73,6 @@ enum layer_names {
 #define CT_HOME  LCTL_T(KC_HOME)
 #define SH_SPC  LSFT_T(KC_SPC)
 #define AL_END LALT_T(KC_END)
-#define GU_XTRA  LGUI_T(LGUI(KC_GRAVE))
 
 #define GU_P0 LGUI_T(KC_P0)
 #define AL_P1  LALT_T(KC_P1)
@@ -148,9 +85,6 @@ enum layer_names {
 #define GU_0  LGUI_T(KC_0)
 
 #define GU_PSCR  LGUI_T(KC_PSCR)
-#define AL_F9  LALT_T(KC_F9)
-#define SH_F8  LSFT_T(KC_F8)
-#define CT_F7  LCTL_T(KC_F7)
 
 
 // layer toggle.
@@ -214,15 +148,6 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(w_f_combo, KC_LCTL),
   COMBO(f_p_combo, KC_LSFT),
   COMBO(f_b_combo, KC_LALT),
-  /*
-  COMBO(c_v_combo, KC_END),
-  COMBO(z_x_combo, KC_INSERT),
-  COMBO(x_d_combo, KC_HOME),
-  COMBO(f_p_combo, KC_UP),
-  COMBO(x_c_combo, KC_LEFT),
-  COMBO(c_d_combo, KC_DOWN),
-  COMBO(d_v_combo, KC_RIGHT),
-  */
   COMBO(y_en_combo, KC_ENTER),
   COMBO(j_l_combo, KC_DEL),
   COMBO(l_u_combo, KC_SCRL)
@@ -233,13 +158,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_COLEMAK] = LAYOUT_absolem(
       KC_Q,  KC_W,  KC_F,     KC_P,    KC_B,   KC_J,   KC_L,      KC_U,    KC_Y,    KC_ENTER,
       KC_A,  KC_R,  KC_S,     KC_T,    KC_G,   KC_M,   KC_N,      KC_E,    KC_I,    KC_O,
-      KC_Z,  CT_X,  SH_C,     AL_D,    GU_V,   GU_K,   AL_H,      SH_DOT,  CT_COMM, KC_SLASH,
+      KC_Z,  CT_X,  SH_C,     AL_D,    GU_V,   GU_K,   AL_H,      SH_DOT,  CT_COMM, KC_SCRL,
       KC_NO, KC_NO, BSPC_MISC, SPC_NUM, KC_NO,  KC_NO,  SPC_NAV,  BSPC_SYM, KC_NO,   KC_NO
                               ),
 
 
- // TEMP mv KC_COMM to RESET, combos dont do macros nor RESET
- [_SYM] = LAYOUT_absolem(
+  // TEMP mv KC_COMM to QK_BOOT, combos dont do macros nor bootloader keys
+  [_SYM] = LAYOUT_absolem(
        KC_RABK, KC_RCBR, KC_RBRC, KC_RPRN, KC_BSLS,  KC_TILD, KC_CIRC, KC_PMNS, KC_PLUS, KC_AT ,
        KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_SLASH,   KC_PERC, KC_ASTR, KC_COLN, KC_SCLN, KC_DQT,
        KC_HASH, KC_DLR,  KC_QUES, KC_EXLM, KC_PIPE,    KC_EQL,  KC_AMPR, KC_DOT,  KC_COMM, KC_QUOT,
@@ -253,13 +178,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,     KC_NO,   KC_LCTL, KC_LGUI,  KC_NO,            KC_NO,   KC_NO, KC_NO,  KC_NO, KC_NO
                            ),
 
-  // [_NUM] = LAYOUT_absolem(
-  //     KC_F1,  KC_F2,  KC_F3, KC_F4,   KC_F5,          KC_PMNS, KC_7,   KC_8, KC_9,  KC_EQL,
-  //     KC_F6,  CT_F7,  SH_F8, AL_F9,   GU_F10,         KC_PPLS, CT_4,   SH_5, AL_6,  GU_PDOT,
-  //     RESET, KC_PSCR, KC_NO, KC_F11,   KC_F12,        KC_0,    KC_1,   KC_2, KC_3,  KC_PCMM,
-  //     KC_NO,   KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
-  //                         ),
-
   [_NUM] = LAYOUT_absolem(
       KC_PMNS,     KC_7,   KC_8, KC_9,  MS_BTN3      ,   KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
       KC_PPLS,     KC_4,   KC_5, KC_6,  MS_BTN2      ,   KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
@@ -271,7 +189,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),   LGUI(KC_0), UG_TOGG, UG_NEXT,  UG_VALU, RGB_M_B,
       LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), KC_VOLU,      KC_NUM,    KC_LALT, KC_LSFT,  KC_LCTL, KC_MUTE,
       KC_PCMM,      KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,      UG_HUEU,    UG_SATU, UG_VALU,  KC_NO,   KC_NO,
-      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,        KC_NO,      KC_NO,   KC_NO,    KC_NO,   KC_NO
+      // Recovery: bootloader + VIA-EEPROM clear (reflash firmware keymap needs this)
+      QK_BOOT, QK_CLEAR_EEPROM, KC_NO,      KC_NO,      KC_NO,        KC_NO,      KC_NO,   KC_NO,    KC_NO,   KC_NO
                            )
 
 };

@@ -19,7 +19,7 @@
     "diode_direction": "COL2ROW",
     "debounce": 0,
     "dynamic_keymap": {
-        "layer_count": 6
+        "layer_count": 5
     },
     "matrix_pins": {
         "rows": ["D7", "E6", "B4", "B5"],
