@@ -1,15 +1,13 @@
 # absolem_mauc
 
-![absolem_mauc](imgur.com image replace me!)
+A custom unibody keyboard based on the Absolem layout, with RGB underglow.
 
-A short description of the keyboard/project
-
-* Keyboard Maintainer: [Sander Boer](https://github.com/yourusername)
-* Hardware Supported: The PCBs, controllers supported
-* Hardware Availability: Links to where you can find this hardware
+* Keyboard Maintainer: [Sander Boer](https://github.com/sanderboer)
+* Hardware Supported: absolem_mauc PCB (ATmega32U4)
+* Hardware Availability: custom
 
 Make example for this keyboard (after setting up your build environment):
 
-    make absolem_mauc:default
+    qmk compile -kb absolem_mauc -km default
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).

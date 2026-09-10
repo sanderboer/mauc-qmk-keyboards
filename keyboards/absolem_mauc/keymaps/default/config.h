@@ -19,9 +19,6 @@
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
-// Prevent normal rollover on alphas from accidentally triggering mods.
-#define IGNORE_MOD_TAP_INTERRUPT
-
 // This prevents accidental repeats of the tap-hold keys when typing quickly.
 #define TAPPING_FORCE_HOLD
 
@@ -29,7 +26,7 @@
 #define PERMISSIVE_HOLD
 
 
-#define COMBO_COUNT 8
+#define COMBO_COUNT 9
 #define COMBO_TERM 20
 // #define PERMISSIVE_HOLD
 // place overrides here

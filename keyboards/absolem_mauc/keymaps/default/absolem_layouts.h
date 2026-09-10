@@ -1,12 +1,20 @@
-#if !defined(ABSOLEM_LAYOUTS_H)
-/* ========================================================================
-   $File: $
-   $Date: $
-   $Revision: $
-   $Creator: Sander Boer $
-   $Notice: (C) Copyright 2016 MAUC. All Rights Reserved. $
-   ======================================================================== */
+/* Copyright 2016 MAUC (Sander Boer)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
+#if !defined(ABSOLEM_LAYOUTS_H)
 #define ABSOLEM_LAYOUTS_H
 
 ////////////////////////// drag_scroll
@@ -216,7 +224,8 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(d_v_combo, KC_RIGHT),
   */
   COMBO(y_en_combo, KC_ENTER),
-  COMBO(j_l_combo, KC_DEL)
+  COMBO(j_l_combo, KC_DEL),
+  COMBO(l_u_combo, KC_SCRL)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -252,16 +261,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                         ),
 
   [_NUM] = LAYOUT_absolem(
-      DRAG_SCROLL, KC_7,   KC_8, KC_9,  KC_MS_BTN3   ,   KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
-      KC_PPLS,     KC_4,   KC_5, KC_6,  KC_MS_BTN2   ,   KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
-      KC_0,        KC_1,   KC_2, KC_3,  KC_MS_BTN1   ,   KC_PCMM,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
+      KC_PMNS,     KC_7,   KC_8, KC_9,  MS_BTN3      ,   KC_F1,  KC_F2,   KC_F3, KC_F4,   KC_F5,    
+      KC_PPLS,     KC_4,   KC_5, KC_6,  MS_BTN2      ,   KC_F6,  KC_F7,   KC_F8, KC_F9,   KC_F10,
+      KC_0,        KC_1,   KC_2, KC_3,  MS_BTN1      ,   KC_PCMM,  KC_PSCR, KC_NO, KC_F11,  KC_F12,
       KC_NO,       KC_NO,  KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,    KC_TRNS, KC_TRNS, KC_NO, KC_NO
                           ),
 
   [_MISC] = LAYOUT_absolem(
-      LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),   LGUI(KC_0), RGB_TOG, RGB_MOD,  RGB_VAI, RGB_M_B,
+      LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),   LGUI(KC_0), UG_TOGG, UG_NEXT,  UG_VALU, RGB_M_B,
       LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), KC_VOLU,      KC_NUM,    KC_LALT, KC_LSFT,  KC_LCTL, KC_MUTE,
-      KC_PCMM,      KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,      RGB_HUI,    RGB_SAI, RGB_VAI,  KC_NO,   KC_NO,
+      KC_PCMM,      KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLD,      UG_HUEU,    UG_SATU, UG_VALU,  KC_NO,   KC_NO,
       KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,        KC_NO,      KC_NO,   KC_NO,    KC_NO,   KC_NO
                            )
 
