@@ -52,8 +52,12 @@ on the EEPROM copy wins. So after `qmk flash`, if the old key is still
 there (e.g. `/` instead of ScrollLock), the firmware is fine — the
 stale EEPROM shadow is the problem. Fix:
 
-1. Press the EEPROM-clear key in the `_MISC` layer (`QK_CLEAR_EEPROM`,
-   next to `QK_BOOT`), or VIA Settings -> Reset EEPROM.
+1. Hold the left Backspace-thumb (`BSPC_MISC`, hold = `_MISC` layer)
+   and tap the right Backspace-thumb (`R30` = `QK_CLEAR_EEPROM` in
+   `_MISC`; `R31` next to it is `QK_BOOT`). Recovery keys live on the
+   wired right thumbs deliberately: the `lx*/rx*` bottom-row slots are
+   unwired on the 34-key splits and unpressable. Or use VIA Settings
+   -> Reset EEPROM.
 2. Unplug/replug.
 3. On splits (yask_bois, chonky_bois): reflash BOTH halves afterwards,
    because clearing wipes the `EE_HANDS` handedness with it

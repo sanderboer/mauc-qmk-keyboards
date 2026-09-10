@@ -168,6 +168,61 @@ def test_recovery_keys_present():
     )
 
 
+def layout_args(inner):
+    """Split a LAYOUT_* inner block into top-level comma-separated args."""
+    args, depth, cur = [], 0, ""
+    for ch in inner:
+        if ch == "(":
+            depth += 1
+            cur += ch
+        elif ch == ")":
+            depth -= 1
+            cur += ch
+        elif ch == "," and depth == 0:
+            args.append(cur.strip())
+            cur = ""
+        else:
+            cur += ch
+    if cur.strip():
+        args.append(cur.strip())
+    return args
+
+
+def misc_bottom_row():
+    """Bottom-row (10 keys) of the _MISC layer in wired order.
+
+    Order: lx0 lx1 L31 L30 lx2 | rx0 R31 R30 rx1 rx2.
+    lx*/rx* are UNWIRED on 34-key splits; wired thumbs are idx 2,3,6,7.
+    """
+    text = strip_comments(header_text())
+    m = re.search(r"\[_MISC\]\s*=\s*LAYOUT_absolem\(", text)
+    assert m, "_MISC layer not found"
+    depth, i = 1, m.end()
+    while depth:
+        if text[i] == "(":
+            depth += 1
+        elif text[i] == ")":
+            depth -= 1
+        i += 1
+    args = layout_args(text[m.end() : i - 1])
+    assert len(args) == 40, f"_MISC has {len(args)} keys, expected 40"
+    return args[30:40]
+
+
+def test_misc_recovery_keys_on_wired_thumbs():
+    bottom = misc_bottom_row()
+    assert bottom[6] in ("QK_BOOT", "QK_BOOTLOADER"), (
+        f"R31 should be bootloader key: {bottom}"
+    )
+    assert bottom[7] in ("QK_CLEAR_EEPROM", "EE_CLR"), (
+        f"R30 should be EEPROM-clear key: {bottom}"
+    )
+    for idx in (0, 1, 4, 5, 8, 9):
+        assert bottom[idx] == "KC_NO", (
+            f"unwired pos {idx} must stay KC_NO, got {bottom[idx]}"
+        )
+
+
 def test_readme_titles_match_board():
     for board in SHARED_BOARDS:
         readme = KEYBOARDS / board / "keymaps" / "default" / "readme.md"
