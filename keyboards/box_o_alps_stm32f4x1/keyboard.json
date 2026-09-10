@@ -7,7 +7,7 @@
     "bootloader": "stm32-dfu",
     "usb": {
         "vid": "0xFEED",
-        "pid": "0x0000",
+        "pid": "0x0004",
         "device_version": "0.0.1"
     },
     "features": {
@@ -15,6 +15,9 @@
     },
     "diode_direction": "COL2ROW",
     "debounce": 10,
+    "dynamic_keymap": {
+        "layer_count": 6
+    },
     "matrix_pins": {
         "rows": ["B3", "B4", "B5", "B6", "C15", "C14", "C13"],
         "cols": ["A8", "B13", "A10", "B14", "B15", "B0", "A7", "A6", "A5", "A4"]

@@ -6,7 +6,7 @@
     "bootloader": "rp2040",
     "usb": {
         "vid": "0xFEED",
-        "pid": "0x0000",
+        "pid": "0x0001",
         "device_version": "0.0.1"
     },
     "features": {
@@ -15,6 +15,9 @@
     },
     "diode_direction": "COL2ROW",
     "debounce": 8,
+    "dynamic_keymap": {
+        "layer_count": 6
+    },
     "matrix_pins": {
         "rows": ["GP3", "GP4", "GP2", "GP1"],
         "cols": ["GP6", "GP29", "GP28", "GP27", "GP26"]

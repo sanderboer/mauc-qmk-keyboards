@@ -30,3 +30,17 @@ to build/flash the keebs, go into the real repo root and do:
 
     qmk compile -kb signum_absolem -km default
     qmk flash   -kb signum_absolem -km default -bl dfu
+
+VIA live remapping
+------------------
+All keymaps have VIA_ENABLE, so after flashing once you can remap keys
+without recompiling. Each keyboard has a unique PID (0x0000-0x0005).
+
+1. Linux needs udev rules once (also fixes the qmk doctor warning):
+       cd ~/qmk_firmware && sudo ./util/install_udev.sh
+2. Open the VIA app (or https://usevia.com in Chromium) and connect the board.
+3. Load the matching draft definition from via/<name>.json
+   (Settings tab -> Show Design tab -> Load Draft Definition).
+4. Remap away. Do NOT remap the L and U positions on the base layer,
+   that breaks the L+U -> Scroll Lock combo (combos stay firmware-only,
+   VIA cannot edit them).

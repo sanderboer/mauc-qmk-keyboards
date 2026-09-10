@@ -6,7 +6,7 @@
     "bootloader": "atmel-dfu",
     "usb": {
         "vid": "0xFEED",
-        "pid": "0x0000",
+        "pid": "0x0005",
         "device_version": "0.0.1"
     },
     "features": {
@@ -14,6 +14,9 @@
         "mousekey": true
     },
     "diode_direction": "COL2ROW",
+    "dynamic_keymap": {
+        "layer_count": 6
+    },
     "matrix_pins": {
         "rows": ["D2", "D1", "F5", "B5"],
         "cols": ["B4", "D7", "D0", "E6", "D4", "F6", "F4", "F7", "B1", "B3", "C6", "B2"]
